@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ContactForm() {
+
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    const { name, email, message } = formState;
+
+    function handleChange(e) {
+        setFormState({...formState, name: e.target.value })
+    }
+    console.log(formState);
 
 
     //JSX
@@ -9,20 +17,17 @@ function ContactForm() {
         <section>
             <h1>Contact Me</h1>
             <form id="contact-form">
-                {/* // name imput */}
                 <div>
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name"/>
+                    <input type="text" defaultValue={name} onChange={handleChange} name="name"   />
                 </div>
-                {/* // email input */}
                 <div>
                     <label htmlFor="email">Email adress:</label>
-                    <input type="email" name="email" />
+                    <input type="email" defaultValue={email} name="email"  />
                 </div>
-                {/* // message text area */}
                 <div>
                     <label htmlFor="message">Message</label>
-                    <textarea name="message" rows="5" />
+                    <textarea name="message" defaultValue={message} rows="5" />
                 </div>
                 <button type="submit">Submit</button>
             </form>
